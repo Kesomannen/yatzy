@@ -7,7 +7,7 @@
 		color?: 'blue' | 'gray';
 		size?: 'sm' | 'md' | 'lg';
 		icon?: string;
-		children: Snippet<[]>;
+		children?: Snippet<[]>;
 	} & HTMLButtonAttributes;
 
 	let { color = 'blue', size = 'md', icon, children, class: className, ...props }: Props = $props();
@@ -36,5 +36,5 @@
 		<Icon {icon} />
 	{/if}
 
-	{@render children()}
+	{@render children?.()}
 </button>

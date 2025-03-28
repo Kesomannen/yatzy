@@ -2,20 +2,13 @@
 	import { game, Player, type ScoreTableRow } from '$lib/game.svelte';
 	import Button from './Button.svelte';
 
-	let { player, row }: { player: Player; row: ScoreTableRow } = $props();
+	let { player, row }: { player: Player; row: ScoreTableRow | undefined } = $props();
 </script>
 
-<tr class="border border-gray-400 odd:bg-gray-200 even:bg-gray-100">
-	<td
-		class="py-1.5 pl-4 text-gray-700"
-		class:font-semibold={row.state.type === 'open' && game.activePlayer === player}
-		class:line-through={row.state.type === 'closed'}
-	>
-		{row.name}
-	</td>
-	<td class="pr-4">
+{#if row}
+	<td class="w-30">
 		{#if row.state.type === 'open'}
-			{#if game.activePlayer === player}
+			{#if game.playing && game.activePlayer === player}
 				{@const points = row.behavior(game.diceValues, game.diceDist)}
 
 				<Button
@@ -41,8 +34,12 @@
 					{/if}
 				</Button>
 			{:else}{/if}
-		{:else if row.state.type === 'closed'}{:else if row.state.type === 'claimed'}
+		{:else if row.state.type === 'closed'}
+			---
+		{:else if row.state.type === 'claimed'}
 			{row.state.points}
 		{/if}
 	</td>
-</tr>
+{:else}
+	<td> Elliot </td>
+{/if}
