@@ -15,7 +15,7 @@
 	{@render children()}
 </main>
 
-<div class="fixed bottom-2 left-3 flex items-center gap-1 text-gray-600 underline">
+<footer class="fixed bottom-2 left-3 flex items-center gap-1 text-gray-600 underline">
 	<Icon icon="mdi:github" class="text-lg" />
 	<a href="https://github.com/Kesomannen/yatzy">Github</a>
-</div>
+</footer>
